@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colour Picker</title>
+
+    <style>
+      body {
+        font-family: Corbel;
+      }
+
+      table {
+        border-spacing: 8px;
+      }
+
+      table td {
+        width: 300px;
+        padding: 0px 20px;
+        color: white;
+        border-radius: 10px;
+        border: medium white solid;
+        cursor: pointer;
+        height: 150px;
+      }
+
+      table td:hover {
+        border: medium red solid;
+      }
+
+      p {
+        margin: 15px;
+      }
+
+      table p:nth-child(1) {
+        font-weight: bold;
+        font-size: x-large;
+      }
+
+      h1 {
+        padding: 0px 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Colour Picker - New Colours 04/03/2024</h1>
+
+    <table id="colorChart">
+      <tr>
+        <td rowspan="5" style="color: #191d64">
+          <p>A Yellow</p>
+          <p>#FFD900</p>
+          <p>R255 G217 B000</p>
+        </td>
+        <td style="color: #191d64">
+          <p>Light sand</p>
+          <p>#FFF3C6</p>
+          <p>R255 G243 B198</p>
+        </td>
+        <td style="color: #191d64">
+          <p>Light pink</p>
+          <p>#FFD9CA</p>
+          <p>R255 G217 B202</p>
+        </td>
+        <td style="color: #191d64">
+          <p>Light green</p>
+          <p>#D0EBB9</p>
+          <p>R208 G235 B185</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>Light blue</p>
+          <p>#9CCDFB</p>
+          <p>R156 G205 B251</p>
+        </td>
+        <td>
+          <p>Pink</p>
+          <p>#FF9CE4</p>
+          <p>R255 G156 B228</p>
+        </td>
+        <td>
+          <p>Light teal</p>
+          <p>#37AFBA</p>
+          <p>R55 G175 B186</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>Light purple</p>
+          <p>#938DFD</p>
+          <p>R147 G141 B253</p>
+        </td>
+        <td>
+          <p>Orange</p>
+          <p>#F59B1B</p>
+          <p>R245 G155 B27</p>
+        </td>
+        <td>
+          <p>Teal</p>
+          <p>#00596B</p>
+          <p>R0 G89 B107</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>Bright blue</p>
+          <p>#1C4FD2</p>
+          <p>R28 G79 B210</p>
+        </td>
+        <td style="color: #191d64">
+          <p>Light grey (text)</p>
+          <p>#DDDFDD</p>
+          <p>R221 G223 B221</p>
+        </td>
+        <td>
+          <p>Dark green</p>
+          <p>#00251F</p>
+          <p>R0 G37 B31</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <p>Dark blue</p>
+          <p>#191D64</p>
+          <p>R25 G29 B100</p>
+        </td>
+        <td>
+          <p>Dark purple</p>
+          <p>#26193E</p>
+          <p>R38 G25 B62</p>
+        </td>
+        <td>
+          <p>Charcoal (text)</p>
+          <p>#191919</p>
+          <p>R25 G25 B25</p>
+        </td>
+      </tr>
+    </table>
+
+    <script>
+      //Onload Look into table for all pTags within tds
+      //creates a variable for 2nd pTag and trim to remove unwanted spaces
+      //Uses variable to assign tds with background colors
+      window.onload = function () {
+        var table = document.getElementById("colorChart");
+        var tds = table.getElementsByTagName("td");
+        for (var i = 0; i < tds.length; i++) {
+          var pTags = tds[i].getElementsByTagName("p");
+          if (pTags.length >= 2) {
+            var hexCode = pTags[1].textContent.trim();
+            tds[i].style.backgroundColor = hexCode;
+          }
+        }
+      };
+      //Once DOM loaded get all tds
+      //Add click event listener to each of the tds
+      //Within tds target 2nd pTag and get innertext
+      //write to clipboard and alert or catch error
+      document.addEventListener("DOMContentLoaded", function () {
+        var tds = document.querySelectorAll("td");
+        tds.forEach(function (td) {
+          td.addEventListener("click", function () {
+            var secondPTag = this.querySelector("p:nth-child(2)");
+            if (secondPTag) {
+              var textToCopy = secondPTag.innerText;
+              navigator.clipboard
+                .writeText(textToCopy)
+                .then(function () {
+                  alert("Copied Hex: " + textToCopy);
+                })
+                .catch(function (err) {
+                  console.error("Failed ", err);
+                });
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

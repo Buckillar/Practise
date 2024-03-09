@@ -4,7 +4,7 @@
 |  __/ | |   | (_| || (__ | |_ | || (__ |  __/   \ V  V /  |  __/| |_) |
 |_|    |_|    \__,_| \___| \__||_| \___| \___|    \_/\_/    \___||_.__/ 
                                                                         
-***Color Selector***
+***Color Selector*** - Added 09/03/2024
 
 Handy tool to create color scheme and then be able to use in lots of media such as Office Tools
 
